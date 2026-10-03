@@ -1,9 +1,13 @@
-export const errorHandler = (error, req, res, _next) => {
-  req.log.error(error);
+import { HttpError } from 'http-errors';
 
-  const status = error.status ?? 500;
+export const errorHandler = (error, _req, res, _next) => {
+  if (error instanceof HttpError) {
+    return res.status(error.status).json({
+      message: error.message,
+    });
+  }
 
-  res.status(status).json({
-    message: error.message,
+  return res.status(500).json({
+    message: 'Something went wrong',
   });
 };
