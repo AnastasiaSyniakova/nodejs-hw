@@ -1,4 +1,4 @@
-# Node.js homework - MongoDB
+# Node.js homework - Validation
 
 An Express API for storing and managing notes in MongoDB.
 
@@ -16,7 +16,8 @@ the environment and falls back to port `3000`.
 
 ## Routes
 
-- `GET /notes` - returns all notes.
+- `GET /notes` - returns paginated notes and supports `tag` and `search`
+  filters. The `page` and `perPage` query parameters default to `1` and `10`.
 - `GET /notes/:noteId` - returns one note by ID.
 - `POST /notes` - creates a note.
 - `PATCH /notes/:noteId` - updates a note by ID.
