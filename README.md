@@ -1,6 +1,7 @@
-# Node.js homework - Validation
+# Node.js homework - Authentication
 
-An Express API for storing and managing notes in MongoDB.
+An Express API for authenticated users to store and manage private notes in
+MongoDB.
 
 ## Run locally
 
@@ -16,6 +17,10 @@ the environment and falls back to port `3000`.
 
 ## Routes
 
+- `POST /auth/register` - creates a user and session.
+- `POST /auth/login` - authenticates a user and replaces their session.
+- `POST /auth/refresh` - replaces a valid refresh session.
+- `POST /auth/logout` - deletes the current session and clears its cookies.
 - `GET /notes` - returns paginated notes and supports `tag` and `search`
   filters. The `page` and `perPage` query parameters default to `1` and `10`.
 - `GET /notes/:noteId` - returns one note by ID.
@@ -23,3 +28,6 @@ the environment and falls back to port `3000`.
 - `PATCH /notes/:noteId` - updates a note by ID.
 - `DELETE /notes/:noteId` - deletes a note by ID.
 - Any unknown route returns a 404 response.
+
+All `/notes` routes require a valid `accessToken` cookie and only access the
+authenticated user's notes.
