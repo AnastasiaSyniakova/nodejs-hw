@@ -1,4 +1,4 @@
-# Node.js homework - Authentication
+# Node.js homework - Mail and images
 
 An Express API for authenticated users to store and manage private notes in
 MongoDB.
@@ -7,8 +7,9 @@ MongoDB.
 
 1. Install dependencies with `npm install`.
 2. Copy `.env.example` to `.env` if `.env` is missing.
-3. Replace the placeholders in `MONGO_URL` with your MongoDB Atlas database
-   username and password.
+3. Fill in the MongoDB, JWT, frontend, Brevo SMTP, and Cloudinary values in
+   `.env`. Use a Brevo SMTP key for `SMTP_PASSWORD`, not a Brevo API key or
+   account password.
 4. Start the development server with `npm run dev`, or the production server
    with `npm start`.
 
@@ -21,6 +22,9 @@ the environment and falls back to port `3000`.
 - `POST /auth/login` - authenticates a user and replaces their session.
 - `POST /auth/refresh` - replaces a valid refresh session.
 - `POST /auth/logout` - deletes the current session and clears its cookies.
+- `POST /auth/request-reset-email` - sends a password-reset email.
+- `POST /auth/reset-password` - resets a password with a valid JWT.
+- `PATCH /users/me/avatar` - uploads the authenticated user's avatar.
 - `GET /notes` - returns paginated notes and supports `tag` and `search`
   filters. The `page` and `perPage` query parameters default to `1` and `10`.
 - `GET /notes/:noteId` - returns one note by ID.
